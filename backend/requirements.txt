@@ -1,0 +1,30 @@
+# Core
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+python-multipart==0.0.9
+pydantic==2.6.1
+pydantic-settings==2.1.0
+
+# Database
+sqlalchemy==2.0.25
+asyncpg==0.29.0
+alembic==1.13.1
+pgvector==0.2.4
+
+# PDF Parsing
+pdfplumber==0.11.0
+pymupdf==1.23.21
+
+# NLP & Embeddings
+spacy==3.7.4
+sentence-transformers==2.3.1
+scikit-learn==1.4.0
+
+# LLM
+openai>=1.10.0
+
+# Utilities
+numpy==1.26.4
+python-dotenv==1.0.1
+aiofiles==23.2.1
+openpyxl==3.1.2

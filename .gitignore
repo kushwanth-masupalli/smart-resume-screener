@@ -1,0 +1,92 @@
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# ============================================
+# Environment & Secrets
+# ============================================
+.env
+.env.local
+.env.production
+*.credentials
+*-credentials.txt
+
+# ============================================
+# IDE / Editor
+# ============================================
+# IntelliJ / PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# OS files
+# ============================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# ============================================
+# FastAPI / Uvicorn
+# ============================================
+*.log
+
+# ============================================
+# Database
+# ============================================
+*.db
+*.sqlite3
+
+# ============================================
+# Machine Learning / Model caches
+# ============================================
+# sentence-transformers / spacy model caches
+models/
+*.bin
+*.pt
+*.onnx
+.cache/
+.cache/
+
+# ============================================
+# Testing / Coverage
+# ============================================
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+.pytest_cache/
+.tox/
+
+# ============================================
+# Misc
+# ============================================
+*.bak
+*.tmp
