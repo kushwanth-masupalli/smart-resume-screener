@@ -33,39 +33,8 @@ Most AI-based HR tools suffer from two major production flaws:
 ## Cascading Architecture Pipeline
 
 ```
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │                         INPUT & INGESTION                               │
-  │  PDF / Text Resumes ──▶ SHA-256 Deduplication ──▶ Raw Text Extraction   │
-  └───────────────────────────────────┬─────────────────────────────────────┘
-                                      │
-  ┌───────────────────────────────────▼─────────────────────────────────────┐
-  │                         STRUCTURING (spaCy)                             │
-  │  Entity Extraction: Name · Email · Phone · Hard Skills · Education      │
-  └───────────────────────────────────┬─────────────────────────────────────┘
-                                      │
-  ┌───────────────────────────────────▼─────────────────────────────────────┐
-  │               STAGE 1: THE SIEVE (Local Vector Search)                 │
-  │  Compute 384-dim Embeddings (`all-MiniLM-L6-v2`)                        │
-  │  Rank candidates by Cosine Similarity vs. Job Description               │
-  │  ZERO LLM COST — Filter N candidates down to Top-K survivors           │
-  └───────────────────────────────────┬─────────────────────────────────────┘
-                                      │
-  ┌───────────────────────────────────▼─────────────────────────────────────┐
-  │               STAGE 2: THE JUDGE (NVIDIA NIM Llama 3.3 70B)             │
-  │  Deep Structured JSON Scoring (Skills, Experience, Education)           │
-  │  Optional PII Redaction (Blind Mode)                                    │
-  └───────────────────────────────────┬─────────────────────────────────────┘
-                                      │
-  ┌───────────────────────────────────▼─────────────────────────────────────┐
-  │               STAGE 3: GROUNDING GUARD & GAP COACH                       │
-  │  Grounding Guard: Detects LLM hallucinations against spaCy facts        │
-  │  Gap Coach: Generates 3 targeted interview questions per finalist       │
-  └───────────────────────────────────┬─────────────────────────────────────┘
-                                      │
-  ┌───────────────────────────────────▼─────────────────────────────────────┐
-  │                       OUTPUT & REPORTING                                │
-  │  Interactive Web UI Dashboard · REST API · Styled Excel Export (.xlsx)  │
-  └─────────────────────────────────────────────────────────────────────────┘
+<img width="461" height="646" alt="image" src="https://github.com/user-attachments/assets/e2dd1792-9cb3-48a8-9b46-eaf7f5ff926d" />
+
 ```
 
 ---
