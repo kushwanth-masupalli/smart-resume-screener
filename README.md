@@ -31,13 +31,7 @@ Most AI-based HR tools suffer from two major production flaws:
 ---
 
 ## Cascading Architecture Pipeline
-
-```
-<img width="461" height="646" alt="image" src="https://github.com/user-attachments/assets/e2dd1792-9cb3-48a8-9b46-eaf7f5ff926d" />
-
-```
-
----
+<img width="504" height="646" alt="image" src="https://github.com/user-attachments/assets/0037520a-26d4-414d-87b4-3eeee0ff6912" />
 
 ## Efficiency & Cost Benchmark
 
