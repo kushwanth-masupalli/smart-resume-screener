@@ -1,4 +1,4 @@
-# 🚀 Smart Resume Screener
+# Smart Resume Screener
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688.svg)](https://fastapi.tiangolo.com/)
@@ -14,13 +14,13 @@ An enterprise-grade, **cascading AI pipeline** designed for low-cost, hallucinat
 
 ---
 
-## 📌 Executive Summary & Problem Statement
+## Executive Summary & Problem Statement
 
 Most AI-based HR tools suffer from two major production flaws:
 1. **High Token Costs**: Naively feeding 200+ multi-page resumes directly into a high-parameter LLM (like GPT-4 or Llama-3.3 70B) burns millions of tokens, costing **$10–$50 per job posting** with high latency.
 2. **Hallucinations & Bias**: Unconstrained LLMs frequently hallucinate candidate credentials or exhibit demographic bias based on names and locations.
 
-### 💡 The Solution
+### The Solution
 **Smart Resume Screener** solves this by engineering around the cost of LLM calls using a **2-stage cascading architecture**:
 * **Stage 1 (The Sieve)**: Computes 384-dimensional local embeddings via `sentence-transformers` to rank all candidates locally at **$0.00 LLM cost**.
 * **Stage 2 (The Judge)**: Only sends the **top 10–20% survivors** (Sieve shortlist) to Llama 3.3 70B for deep structured JSON scoring.
@@ -30,7 +30,7 @@ Most AI-based HR tools suffer from two major production flaws:
 
 ---
 
-## 🏗️ Cascading Architecture Pipeline
+## Cascading Architecture Pipeline
 
 ```
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -47,7 +47,7 @@ Most AI-based HR tools suffer from two major production flaws:
   │               STAGE 1: THE SIEVE (Local Vector Search)                 │
   │  Compute 384-dim Embeddings (`all-MiniLM-L6-v2`)                        │
   │  Rank candidates by Cosine Similarity vs. Job Description               │
-  │  ⚡ ZERO LLM COST — Filter N candidates down to Top-K survivors         │
+  │  ZERO LLM COST — Filter N candidates down to Top-K survivors           │
   └───────────────────────────────────┬─────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────▼─────────────────────────────────────┐
@@ -58,8 +58,8 @@ Most AI-based HR tools suffer from two major production flaws:
                                       │
   ┌───────────────────────────────────▼─────────────────────────────────────┐
   │               STAGE 3: GROUNDING GUARD & GAP COACH                       │
-  │  🛡️ Grounding Guard: Detects LLM hallucinations against spaCy facts     │
-  │  💬 Gap Coach: Generates 3 targeted interview questions per finalist    │
+  │  Grounding Guard: Detects LLM hallucinations against spaCy facts        │
+  │  Gap Coach: Generates 3 targeted interview questions per finalist       │
   └───────────────────────────────────┬─────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────▼─────────────────────────────────────┐
@@ -70,33 +70,33 @@ Most AI-based HR tools suffer from two major production flaws:
 
 ---
 
-## ⚡ Efficiency & Cost Benchmark
+## Efficiency & Cost Benchmark
 
 Assuming a hiring batch of **N = 200 candidates** for 1 job description:
 
 | Pipeline Stage | Processing Method | LLM API Calls | Execution Cost | Latency per Candidate |
 | :--- | :--- | :---: | :---: | :---: |
-| **Naive LLM Approach** | Send all 200 resumes to Llama-70B | **200** | ~ \$10.00 – \$15.00 | ~ 3.5 sec / candidate |
-| **Stage 1: The Sieve** | `all-MiniLM-L6-v2` Local Vector Cosine | **0** | **\$0.00** | **< 15 ms** |
-| **Stage 2: The Judge** | Llama 3.3 70B on Top-20 survivors | **20** | ~ \$1.00 – \$1.50 | ~ 1.2 sec / survivor |
-| **Stage 3: Gap Coach** | Llama 3.3 70B interview probe | **20** | ~ \$0.50 | ~ 0.8 sec / survivor |
+| **Naive LLM Approach** | Send all 200 resumes to Llama-70B | **200** | ~ $10.00 – $15.00 | ~ 3.5 sec / candidate |
+| **Stage 1: The Sieve** | `all-MiniLM-L6-v2` Local Vector Cosine | **0** | **$0.00** | **< 15 ms** |
+| **Stage 2: The Judge** | Llama 3.3 70B on Top-20 survivors | **20** | ~ $1.00 – $1.50 | ~ 1.2 sec / survivor |
+| **Stage 3: Gap Coach** | Llama 3.3 70B interview probe | **20** | ~ $0.50 | ~ 0.8 sec / survivor |
 | **Total Smart Pipeline** | **Cascading Filter System** | **40** | **~ 90% Cost Cut** | **~ 85% Faster** |
 
 ---
 
-## 🔥 Key Features
+## Key Features
 
-- **🎯 The Sieve (Vector Pre-Filter)**: Leverages lightweight PyTorch transformer models to instantly score resume-to-JD vector alignment locally.
-- **⚖️ The LLM Judge**: Evaluates candidates against job requirements returning strict Pydantic JSON with sub-scores (`skills_match`, `experience_match`, `education_match`) and detailed rationales.
-- **🛡️ Grounding Guard (Anti-Hallucination)**: Scans LLM output against spaCy extracted entities to catch hallucinated years of experience, unlisted tools, or fabricated degrees.
-- **🙈 Blind Mode (Bias Mitigation)**: Dynamically strips candidate names, emails, phone numbers, and location identifiers prior to LLM submission for fair evaluation.
-- **💬 Gap Coach**: Automatically formulates 3 technical interview probing questions focused on candidate weak spots.
-- **📊 Tiebreaker Matrix**: Resolves identical overall scores by evaluating secondary criteria: `skills_match` ➔ `experience_match` ➔ `education_match` ➔ `sieve_vector_rank`.
-- **📥 One-Click Excel Export**: Generates beautifully styled, multi-tab Excel reports (`openpyxl`) formatted with color-coded score heatmaps.
+- **The Sieve (Vector Pre-Filter)**: Leverages lightweight PyTorch transformer models to instantly score resume-to-JD vector alignment locally.
+- **The LLM Judge**: Evaluates candidates against job requirements returning strict Pydantic JSON with sub-scores (`skills_match`, `experience_match`, `education_match`) and detailed rationales.
+- **Grounding Guard (Anti-Hallucination)**: Scans LLM output against spaCy extracted entities to catch hallucinated years of experience, unlisted tools, or fabricated degrees.
+- **Blind Mode (Bias Mitigation)**: Dynamically strips candidate names, emails, phone numbers, and location identifiers prior to LLM submission for fair evaluation.
+- **Gap Coach**: Automatically formulates 3 technical interview probing questions focused on candidate weak spots.
+- **Tiebreaker Matrix**: Resolves identical overall scores by evaluating secondary criteria: `skills_match` -> `experience_match` -> `education_match` -> `sieve_vector_rank`.
+- **One-Click Excel Export**: Generates beautifully styled, multi-tab Excel reports (`openpyxl`) formatted with color-coded score heatmaps.
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
+## Tech Stack & Dependencies
 
 * **Framework**: Python 3.11, [FastAPI](https://fastapi.tiangolo.com/) (Async ASGI)
 * **Database**: PostgreSQL 15+ with [`pgvector`](https://github.com/pgvector/pgvector) & [SQLAlchemy 2.0 Async](https://www.sqlalchemy.org/)
@@ -109,7 +109,7 @@ Assuming a hiring batch of **N = 200 candidates** for 1 job description:
 
 ---
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### 1. Prerequisites
 * **Python**: `3.11` or higher
@@ -188,12 +188,12 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Once running:
-* **Web UI Dashboard**: Access directly at [`http://localhost:8000/`](http://localhost:8000/)
-* **Interactive OpenAPI Specs**: Explore at [`http://localhost:8000/docs`](http://localhost:8000/docs)
+* **Web UI Dashboard**: Access directly at [http://localhost:8000/](http://localhost:8000/)
+* **Interactive OpenAPI Specs**: Explore at [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## 📡 REST API Reference
+## REST API Reference
 
 | Endpoint | Method | Description |
 | :--- | :---: | :--- |
@@ -204,14 +204,14 @@ Once running:
 | `/api/v1/resumes/{candidate_id}` | `GET` | Fetch detailed candidate profile & extracted entity JSON |
 | `/api/v1/jobs` | `POST` | Create a new Job Description with embedded vectors |
 | `/api/v1/jobs` | `GET` | List all created job descriptions |
-| `/api/v1/screen/{job_id}` | `POST` | Trigger cascading screening pipeline (`Sieve → Judge → Guard → Coach`) |
+| `/api/v1/screen/{job_id}` | `POST` | Trigger cascading screening pipeline (`Sieve -> Judge -> Guard -> Coach`) |
 | `/api/v1/screen/{job_id}/results` | `GET` | Retrieve candidate screening leaderboard (with filtering & sorting) |
 | `/api/v1/screen/{job_id}/export` | `GET` | Download styled Excel report (`.xlsx`) |
 | `/api/v1/stats` | `GET` | Retrieve high-level application metrics |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 smart-resume-screener/
@@ -247,7 +247,7 @@ smart-resume-screener/
 
 ---
 
-## 👨‍💻 Candidate Submission Details
+## Candidate Submission Details
 
 This project was built as an **internship technical assessment** to demonstrate production-grade AI system architecture, cost optimization, and full-stack software development skills.
 
@@ -257,6 +257,6 @@ This project was built as an **internship technical assessment** to demonstrate 
 
 ---
 
-## 📄 License
+## License
 
 This repository is licensed under the [MIT License](LICENSE).

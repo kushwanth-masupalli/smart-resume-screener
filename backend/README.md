@@ -439,9 +439,9 @@ Returns an `.xlsx` file with two sheets:
 2. **Summary** — Aggregate metrics: total candidates, sieve survivors, average score, cost reduction percentage
 
 Phase indicators are color-coded:
-- 🟢 **All Stages Passed** (green)
-- 🟡 **Judge (LLM Scored)** (yellow)
-- 🔴 **Sieve (Pre-filter)** (red — eliminated before LLM)
+-  **All Stages Passed** (green)
+-  **Judge (LLM Scored)** (yellow)
+-  **Sieve (Pre-filter)** (red — eliminated before LLM)
 
 ---
 
@@ -578,8 +578,8 @@ Set these in your deployment platform:
 
 | Variable | Required | Notes |
 |----------|----------|-------|
-| `DATABASE_URL` | ✅ | Must use `postgresql+asyncpg://` scheme |
-| `NVIDIA_API_KEY` | ✅ | Get from https://build.nvidia.com |
+| `DATABASE_URL` |  | Must use `postgresql+asyncpg://` scheme |
+| `NVIDIA_API_KEY` |  | Get from https://build.nvidia.com |
 | `FRONTEND_URL` | Optional | CORS origin for production frontend URL |
 | `LLM_MODEL` | Optional | Default: `meta/llama-3.3-70b-instruct` |
 | `EMBEDDING_MODEL` | Optional | Default: `all-MiniLM-L6-v2` |
