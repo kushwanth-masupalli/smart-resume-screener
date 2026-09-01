@@ -8,12 +8,6 @@
 
 An enterprise-grade, **cascading AI pipeline** designed for low-cost, hallucination-guarded, and auditable resume screening.
 
-> **Submitted by**: Masupalli Kushwanth  
-> **Email**: [masupallikushwanth2005@gmail.com](mailto:masupallikushwanth2005@gmail.com)  
-> **GitHub**: [@kushwanth-masupalli](https://github.com/kushwanth-masupalli)
-
----
-
 ## Executive Summary & Problem Statement
 
 Most AI-based HR tools suffer from two major production flaws:
@@ -210,15 +204,7 @@ smart-resume-screener/
 
 ---
 
-## Candidate Submission Details
 
-This project was built as an **internship technical assessment** to demonstrate production-grade AI system architecture, cost optimization, and full-stack software development skills.
-
-* **Developer**: Masupalli Kushwanth
-* **Email**: [masupallikushwanth2005@gmail.com](mailto:masupallikushwanth2005@gmail.com)
-* **GitHub Repository**: [smart-resume-screener](https://github.com/kushwanth-masupalli/smart-resume-screener)
-
----
 
 ## License
 
